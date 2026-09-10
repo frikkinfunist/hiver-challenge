@@ -98,6 +98,7 @@ src/retrieval.py          # build/query the SBERT + FAISS retrieval index (RAG)
 src/prompt_builder.py     # assembles persona + few-shot + thread into the final prompt
 src/generate.py           # runs the pipeline end-to-end; single reply or multi-suggestion
 src/persona_variants.py   # style variants used to generate 3-5 distinct suggestions
+src/secrets_utils.py      # loads API keys from env var, falling back to a local .txt file
 src/finetune_lora.py      # optional LoRA fine-tuning on the train split
 src/evaluate.py           # SBERT-cosine + ROUGE-L evaluation on the test split
 scripts/run_pipeline.sh   # build index + generate a few sample replies
