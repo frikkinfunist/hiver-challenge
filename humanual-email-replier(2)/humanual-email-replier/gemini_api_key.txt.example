@@ -1,6 +1,0 @@
-# Paste your Gemini API key below, save this file as gemini_api_key.txt
-# (i.e. drop the .example suffix), and it'll be picked up automatically.
-# Get a key at: https://aistudio.google.com/apikey
-#
-# gemini_api_key.txt (the real file, not this .example) is already in
-# .gitignore -- it will never be committed as long as you don't force-add it.
