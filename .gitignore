@@ -1,0 +1,18 @@
+__pycache__/
+*.pyc
+.env
+.venv/
+venv/
+outputs/
+checkpoints/
+*.index
+*.faiss
+data/cache/
+.ipynb_checkpoints/
+*.egg-info/
+.DS_Store
+
+# API keys -- never commit these (the .example templates ARE tracked)
+gemini_api_key.txt
+openai_api_key.txt
+*_api_key.txt
