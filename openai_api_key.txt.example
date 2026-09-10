@@ -1,0 +1,6 @@
+# Paste your OpenAI API key below, save this file as openai_api_key.txt
+# (i.e. drop the .example suffix), and it'll be picked up automatically.
+# Get a key at: https://platform.openai.com/api-keys
+#
+# openai_api_key.txt (the real file, not this .example) is already in
+# .gitignore -- it will never be committed as long as you don't force-add it.
