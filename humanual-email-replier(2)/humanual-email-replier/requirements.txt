@@ -1,0 +1,17 @@
+datasets>=2.19.0
+sentence-transformers>=3.0.0
+transformers>=4.42.0
+accelerate>=0.31.0
+peft>=0.11.0
+bitsandbytes>=0.43.0 ; platform_system == "Linux"
+torch>=2.2.0
+faiss-cpu>=1.8.0
+scikit-learn>=1.4.0
+rouge-score>=0.1.2
+numpy>=1.26.0
+pandas>=2.2.0
+pyyaml>=6.0
+tqdm>=4.66.0
+openai>=1.30.0
+google-genai>=0.7.0
+python-dotenv>=1.0.0

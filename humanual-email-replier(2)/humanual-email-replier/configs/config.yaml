@@ -1,0 +1,56 @@
+# ---------------------------------------------------------------------------
+# Config for the Humanual-Email reply generator
+# ---------------------------------------------------------------------------
+
+dataset:
+  name: "snap-stanford/humanual-email"
+  train_split: "train"
+  val_split: "val"
+  test_split: "test"
+
+# SBERT model used for BOTH retrieval (RAG) and evaluation (semantic accuracy)
+sbert:
+  model_name: "sentence-transformers/all-mpnet-base-v2"
+  device: "auto"          # "cpu" | "cuda" | "auto"
+
+retrieval:
+  index_path: "data/cache/sbert_index.faiss"
+  meta_path: "data/cache/sbert_meta.parquet"
+  top_k: 3                # few-shot examples to retrieve per query
+  # restrict retrieval candidates to the SAME persona/user so style stays
+  # consistent; falls back to global pool if the user has < top_k history
+  scope: "user_first"     # "user_first" | "global"
+
+generation:
+  backend: "gemini"        # "gemini" | "hf" (local transformers) | "openai" | "lora"
+  gemini_model_name: "gemini-flash-latest"  # alias that tracks Google's current recommended flash model
+  hf_model_name: "meta-llama/Llama-3.2-3B-Instruct"
+  openai_model_name: "gpt-4o-mini"
+  lora_adapter_path: "checkpoints/lora-humanual-email"
+  max_new_tokens: 220
+  temperature: 0.4
+  top_p: 0.9
+
+multi_reply:
+  # how many suggested replies to produce per email (3-5 recommended)
+  num_suggestions: 4
+  # cosine similarity above which two suggestions are flagged as near-dupes
+  dedup_threshold: 0.93
+  # extra style variants to draw from if a resample is needed to avoid a dupe
+  max_resample_attempts: 2
+
+finetune:
+  base_model_name: "meta-llama/Llama-3.2-3B-Instruct"
+  output_dir: "checkpoints/lora-humanual-email"
+  epochs: 3
+  learning_rate: 2.0e-4
+  lora_r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  per_device_batch_size: 2
+  gradient_accumulation_steps: 8
+  max_seq_len: 1024
+
+evaluation:
+  output_path: "outputs/eval_results.json"
+  metrics: ["sbert_cosine", "rouge_l"]
